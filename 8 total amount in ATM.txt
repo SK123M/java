@@ -1,0 +1,25 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+public class ATMBalanceCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] denominations = {2000, 500, 200, 100};
+        Map<Integer, Integer> notesCount = new HashMap<>();
+        for (int denomination : denominations) {
+            System.out.print("Enter the number of " + denomination + " notes: ");
+            int count = scanner.nextInt();
+            notesCount.put(denomination, count);
+        }
+        int totalBalance = calculateTotalBalance(denominations, notesCount);
+        System.out.println("Total balance available in the ATM: " + totalBalance);
+    }
+    private static int calculateTotalBalance(int[] denominations, Map<Integer, Integer> notesCount) {
+        int totalBalance = 0;
+        for (int denomination : denominations) {
+            int count = notesCount.getOrDefault(denomination, 0);
+            totalBalance += denomination * count;
+        }
+        return totalBalance;
+    }
+}

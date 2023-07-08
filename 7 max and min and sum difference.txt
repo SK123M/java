@@ -1,0 +1,34 @@
+import java.util.Arrays;
+import java.util.Scanner;
+public class ArrayMinMaxSumDiff {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of elements in the array: ");
+        int size = scanner.nextInt();
+        int[] array = new int[size];
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < size; i++) {
+            array[i] = scanner.nextInt();
+        }
+        System.out.print("Enter the value of M for Mth maximum number: ");
+        int m = scanner.nextInt();
+        System.out.print("Enter the value of N for Nth minimum number: ");
+        int n = scanner.nextInt();
+        int mthMax = findMthMaximum(array, m);
+        int nthMin = findNthMinimum(array, n);
+        int sum = mthMax + nthMin;
+        int diff = mthMax - nthMin;
+        System.out.println("Mth maximum: " + mthMax);
+        System.out.println("Nth minimum: " + nthMin);
+        System.out.println("Sum: " + sum);
+        System.out.println("Difference: " + diff);
+    }
+    private static int findMthMaximum(int[] array, int m) {
+        Arrays.sort(array);
+        return array[array.length - m];
+    }
+    private static int findNthMinimum(int[] array, int n) {
+        Arrays.sort(array);
+        return array[n - 1];
+    }
+}
